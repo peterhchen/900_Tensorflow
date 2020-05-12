@@ -1,6 +1,9 @@
 import tensorflow as tf
 mnist = tf.keras.datasets.mnist
 
+# keras cache data in
+# "C:/Users/14088/.keras/dataset/mnist.npz"
+# They are store in binary format.
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 x_train, x_test = x_train / 255.0, x_test / 255.0
 print ('x_train[:2, :2]:')
@@ -40,6 +43,9 @@ score = model.evaluate(x_test,  y_test, verbose=2)
 print ('score:')
 print (score)
 
+# If you want your model to return a probability, 
+# you can wrap the trained model, 
+# and attach the softmax to it:
 probability_model = tf.keras.Sequential([
   model,
   tf.keras.layers.Softmax()
